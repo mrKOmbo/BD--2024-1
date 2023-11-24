@@ -1,0 +1,14 @@
+<?php
+$cor=$_REQUEST['cor'];
+$pas=$_REQUEST['pas'];
+
+$cnx= new PDO("psql:host=172.17.0.5;dbname=basedata user=milo password=123456a");
+$res=$cnx->query("select * from public.empleados where nombre='$cor' and numero_empleado='$pas'");
+
+$datos=array();
+foreach($res as $row){
+  $datos[]=$row;
+}
+
+echo json_encode($datos);
+?>
